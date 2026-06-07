@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class OrbitingGravityField : MonoBehaviour
+public class GravityField : MonoBehaviour
 {
     [Header("Shooting Settings")]
     [Tooltip("How fast the bullet shoots towards the crosshair.")]
@@ -113,6 +113,9 @@ public class OrbitingGravityField : MonoBehaviour
                 if (bestBullet != null)
                 {
                     nodeOccupants[i] = bestBullet;
+
+                    //Change tag to PlayerBullet when grabbed
+                    bestBullet.tag = "PlayerBullet";
                 }
             }
 
@@ -162,6 +165,7 @@ public class OrbitingGravityField : MonoBehaviour
             Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
         }
     }
+
     //Bullet Fire
     public Transform GetNextBulletTransform(Vector2 targetPosition)
     {
@@ -212,7 +216,6 @@ public class OrbitingGravityField : MonoBehaviour
             if (rb != null)
             {
                 nodeOccupants[bestIndex] = null;
-                firedBullet.tag = "Untagged";
 
                 Vector2 fireDirection = (targetPosition - (Vector2)firedBullet.transform.position).normalized;
                 rb.AddForce(fireDirection * shootForce, ForceMode2D.Impulse);

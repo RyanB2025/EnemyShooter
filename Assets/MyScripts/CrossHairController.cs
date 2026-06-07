@@ -8,7 +8,7 @@ public class CrosshairController : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     [Tooltip("Drag the GameObject holding your OrbitingGravityField script here.")]
-    [SerializeField] private OrbitingGravityField gravityField;
+    [SerializeField] private GravityField gravityField;
 
     [Header("Settings")]
     [Tooltip("Hide the default Windows/Mac mouse cursor when a bullet is loaded?")]

@@ -637,6 +637,7 @@ GameObject:
   - component: {fileID: 905552632}
   - component: {fileID: 905552631}
   - component: {fileID: 905552630}
+  - component: {fileID: 905552635}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -794,6 +795,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 562345726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &905552635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905552629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d53e7682a9ee704dae2050805ebf010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 100
 --- !u!1001 &1742253634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -805,6 +819,10 @@ PrefabInstance:
     - target: {fileID: 2858450816061279508, guid: 621e9c28d5cdaff4cac47a628f058fd2, type: 3}
       propertyPath: m_Name
       value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858450816061279508, guid: 621e9c28d5cdaff4cac47a628f058fd2, type: 3}
+      propertyPath: m_TagString
+      value: bullet
       objectReference: {fileID: 0}
     - target: {fileID: 6183502272427468224, guid: 621e9c28d5cdaff4cac47a628f058fd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -915,9 +933,10 @@ GameObject:
   - component: {fileID: 2115108046}
   - component: {fileID: 2115108045}
   - component: {fileID: 2115108044}
+  - component: {fileID: 2115108047}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1032,6 +1051,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 603645559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115108047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115108043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c48b888e75f7d4ebf0c76b4dbc6d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
