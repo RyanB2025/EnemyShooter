@@ -114,8 +114,8 @@ public class GravityField : MonoBehaviour
                 {
                     nodeOccupants[i] = bestBullet;
 
-                    //Change tag to PlayerBullet when grabbed
-                    bestBullet.tag = "PlayerBullet";
+                    // MODIFICATION: Change tag to "Untagged" so it cannot damage enemies or be detected as a player while held
+                    bestBullet.tag = "Untagged";
                 }
             }
 
@@ -216,6 +216,9 @@ public class GravityField : MonoBehaviour
             if (rb != null)
             {
                 nodeOccupants[bestIndex] = null;
+
+                // MODIFICATION: Assign the "PlayerBullet" tag right as it fires so it becomes deadly!
+                firedBullet.tag = "PlayerBullet";
 
                 Vector2 fireDirection = (targetPosition - (Vector2)firedBullet.transform.position).normalized;
                 rb.AddForce(fireDirection * shootForce, ForceMode2D.Impulse);
