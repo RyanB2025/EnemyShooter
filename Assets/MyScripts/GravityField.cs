@@ -189,6 +189,7 @@ public class GravityField : MonoBehaviour
     }
 
     //Fires best bullet
+    //Fires best bullet
     public void FireBullet(Vector2 targetPosition)
     {
         int bestIndex = -1;
@@ -215,12 +216,49 @@ public class GravityField : MonoBehaviour
 
             if (rb != null)
             {
+                Vector2 fireDirection = (targetPosition - (Vector2)firedBullet.transform.position).normalized;
+
+                // --- NEW: Raycast check to prevent hitting the Player ---
+                // Cast a ray from the bullet in the direction it's going to fire
+                RaycastHit2D[] hits = Physics2D.RaycastAll(firedBullet.transform.position, fireDirection);
+                bool willHitPlayer = false;
+
+                foreach (RaycastHit2D hit in hits)
+                {
+                    // Skip the bullet we are currently trying to fire
+                    if (hit.collider == firedBullet) continue;
+
+                    // Skip other bullets since they likely won't stop this bullet physically
+                    if (hit.collider.CompareTag("Untagged") ||
+                        hit.collider.CompareTag("EnemyBullet") ||
+                        hit.collider.CompareTag("PlayerBullet"))
+                    {
+                        continue;
+                    }
+
+                    // If the first solid object in the line of fire is the Player, mark it
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        willHitPlayer = true;
+                    }
+
+                    // Stop checking after finding the first solid object (Player, Wall, Enemy, etc.)
+                    break;
+                }
+
+                // Abort the firing process if the trajectory intersects with the Player
+                if (willHitPlayer)
+                {
+                    Debug.Log("Shot aborted: Trajectory intersects with Player!");
+                    return;
+                }
+                // --------------------------------------------------------
+
                 nodeOccupants[bestIndex] = null;
 
                 // MODIFICATION: Assign the "PlayerBullet" tag right as it fires so it becomes deadly!
                 firedBullet.tag = "PlayerBullet";
 
-                Vector2 fireDirection = (targetPosition - (Vector2)firedBullet.transform.position).normalized;
                 rb.AddForce(fireDirection * shootForce, ForceMode2D.Impulse);
             }
         }
