@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 614819616741166512}
   - component: {fileID: 7971971681178233858}
   - component: {fileID: 8242067877930997728}
-  - component: {fileID: 8174471049973515788}
+  - component: {fileID: 4084510138697980179}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxHealth: 50
---- !u!114 &8174471049973515788
+--- !u!114 &4084510138697980179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,13 +153,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6166231971382429569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaaef271a2765fa428e3d78b1b01d9fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 94eef818230b7b1418ad2beb9e256d93, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
+  speed: 3
+  stoppingDistance: 5
+  retreatDistance: 3
   bulletPrefab: {fileID: 2858450816061279508, guid: 621e9c28d5cdaff4cac47a628f058fd2, type: 3}
   firePoint: {fileID: 8414227636596354374}
-  fireRate: 5
-  bulletSpeed: 6
+  fireRate: 2
+  bulletSpeed: 10
 --- !u!1 &7481658948319783201
 GameObject:
   m_ObjectHideFlags: 0
