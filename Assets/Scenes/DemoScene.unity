@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 169816251}
   - component: {fileID: 169816253}
   - component: {fileID: 169816252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top-Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1672,7 +1672,7 @@ GameObject:
   - component: {fileID: 620703121}
   - component: {fileID: 620703123}
   - component: {fileID: 620703122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right-Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2128,6 +2128,10 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   gravityField: {fileID: 2004866648}
   hideSystemCursor: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  crosshairRadius: 0.62
 --- !u!4 &816390916
 Transform:
   m_ObjectHideFlags: 0
@@ -2644,7 +2648,7 @@ GameObject:
   - component: {fileID: 972514368}
   - component: {fileID: 972514370}
   - component: {fileID: 972514369}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left-Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3982,7 +3986,7 @@ GameObject:
   - component: {fileID: 1895002637}
   - component: {fileID: 1895002639}
   - component: {fileID: 1895002638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottom-Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4156,7 +4160,7 @@ MonoBehaviour:
   shootForce: 20
   playerTarget: {fileID: 905552634}
   numberOfFields: 7
-  orbitSpeed: 100
+  orbitSpeed: 300
   orbitRadius: 1.2
   fieldRadius: 0.5
   pullStrength: 100
@@ -4320,8 +4324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bulletPrefab: {fileID: 2858450816061279508, guid: 621e9c28d5cdaff4cac47a628f058fd2, type: 3}
   firePoint: {fileID: 1229003728}
-  fireRate: 2
-  bulletSpeed: 4
+  fireRate: 0.5
+  bulletSpeed: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
