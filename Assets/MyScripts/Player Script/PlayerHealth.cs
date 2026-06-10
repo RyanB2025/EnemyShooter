@@ -4,7 +4,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
+    public GameManager gameManager; // Assign this in the Unity Inspector
 
     private void Start()
     {
@@ -37,6 +38,13 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player has died.");
+        // Trigger the lose panel
+        if (gameManager != null)
+        {
+            gameManager.TriggerLoseState();
+        }
+
+        // Disable player object
+        gameObject.SetActive(false);
     }
 }

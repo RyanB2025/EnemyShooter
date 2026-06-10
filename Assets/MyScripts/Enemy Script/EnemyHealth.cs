@@ -1,15 +1,21 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 50;
     private int currentHealth;
 
+    // Reference to the spawner
+    private EnemySpawner spawner;
+
     private void Start()
     {
         currentHealth = maxHealth;
         Debug.Log($"Enemy spawned with {currentHealth} health.");
+
+        // FIXED WARNING: Replaced FindObjectOfType with FindFirstObjectByType
+        spawner = FindFirstObjectByType<EnemySpawner>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,6 +43,16 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy destroyed!");
+
+        // Notify the spawner that this enemy has died BEFORE destroying it
+        if (spawner != null)
+        {
+            spawner.EnemyDefeated(); // This causes the error if EnemySpawner isn't updated!
+        }
+        else
+        {
+            Debug.LogWarning("No EnemySpawner found in the scene! Make sure you have one.");
+        }
 
         Destroy(gameObject);
     }

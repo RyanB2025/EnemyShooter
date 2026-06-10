@@ -31,6 +31,11 @@ public class Wave
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Game Management")]
+    public GameManager gameManager; // Drag your GameManager here in the Inspector
+    public int activeEnemies = 0;
+    private bool allWavesSpawned = false;
+
     [Header("Spawn Location")]
     [Tooltip("The transform where enemies will appear")]
     [SerializeField] private Transform spawnPoint;
@@ -78,7 +83,9 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        Debug.Log("All waves have been completed!");
+        Debug.Log("All waves have been spawned!");
+        allWavesSpawned = true; // Mark that the spawner is officially finished
+        CheckWinCondition(); // Check just in case the last enemy died before this line was reached
     }
 
     private void SpawnEnemy(GameObject prefab)
@@ -86,6 +93,7 @@ public class EnemySpawner : MonoBehaviour
         if (prefab != null && spawnPoint != null)
         {
             Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+            activeEnemies++; // FIXED: INCREASE enemy count when one is spawned
         }
         else
         {
@@ -93,10 +101,34 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Public method in case you want to trigger the spawner from a UI button or GameManager later
+    // FIXED: This is the method your Enemy script was looking for!
+    public void EnemyDefeated()
+    {
+        activeEnemies--; // DECREASE enemy count when one dies
+        CheckWinCondition();
+    }
+
+    private void CheckWinCondition()
+    {
+        // If all waves are completely spawned AND there are no living enemies left
+        if (allWavesSpawned && activeEnemies <= 0)
+        {
+            Debug.Log("All enemies defeated! YOU WIN!");
+
+            if (gameManager != null)
+            {
+                gameManager.TriggerWinState();
+            }
+            else
+            {
+                Debug.LogWarning("GameManager is not assigned on the EnemySpawner!");
+            }
+        }
+    }
+
     public void StartSpawning()
     {
-        if (currentWaveIndex == 0) // Prevents restarting if already running
+        if (currentWaveIndex == 0)
         {
             StartCoroutine(SpawnWavesRoutine());
         }
